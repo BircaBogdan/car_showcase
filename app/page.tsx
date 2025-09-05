@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import { CarCard, CustomFilter, Hero, SearchBar } from '@/components'
+import { CarCard, CustomFilter, Hero, SearchBar, ShowMore } from '@/components'
 
 import { fetchCars } from "@/utils";
 import { manufacturers } from "@/constants";
@@ -30,6 +30,8 @@ const isDataEmpty = !Array.isArray(allCars) || allCars.length <1 || !allCars;
 
            <div className='home__filters'>
             <SearchBar />
+
+
             <div 
             className="home__filter-containter">
 <CustomFilter title="fuel" options={fuels} />
@@ -43,11 +45,17 @@ const isDataEmpty = !Array.isArray(allCars) || allCars.length <1 || !allCars;
 {allCars?.map((car) => (
 <CarCard car={car} />
 ))}
-
   </div>
+
+  <ShowMore
+  pageNumber={(searchParams.limit || 10) / 10}
+  isNext={(searchParams.limt || 10) >
+    allCars.length}
+  
+  />
           </section>
         ): (
-          <div className="home__errpr-container">
+          <div className="home__error-container">
             <h2 className="text-black text-xl font-bold">Oops, no results</h2>
             <p>{allCars?.message}</p>
             </div>

@@ -9,8 +9,7 @@ import { ImageResponse } from 'next/server';
 import { Router } from 'next/router';
 
 const SearchButton = ( { otherClasses }: { otherClasses:string }) => (
-<button type="submit" className={`-ml-3 z-10 $
-  {otherClasses}`}>
+<button type="submit" className={`-ml-3 z-10 ${otherClasses}`}>
 <Image 
  src="/magnifying-glass.svg"
  alt="maginifying glass"
@@ -55,9 +54,8 @@ searchParams.delete('model')
 searchParams.delete('manufacturer')
   }
 
-  const newPathname = `$(window.location.pathname}?$
-  {searchParams.toString()}`
-  router.push(newPathname)
+  const newPathname = `${window.location.pathname}?${searchParams.toString()}`;
+  router.push(newPathname);
 }
 
   return (
